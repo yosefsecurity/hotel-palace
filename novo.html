@@ -568,8 +568,14 @@ function openModal(tipo) {
   const text = document.getElementById("modalText");
 
   const dados = {
-    classic: `<h2>Apartamento Classic</h2><p>Conforto e praticidade com excelente custo-benefício.</p><ul><li>Ar-condicionado</li><li>TV LED</li><li>Wi-Fi</li><li>Banheiro privativo</li></ul>`,
-    suite: `<h2>Suíte Classic</h2><p>Mais espaço e privacidade para sua estadia.</p><ul><li>Cama queen</li><li>Ambiente climatizado</li><li>Wi-Fi rápido</li></ul>`,
-    master: `<h2>Suíte Master</h2><p>Experiência premium com conforto superior.</p><ul><li>Ambiente amplo</li><li>Design sofisticado</li><li>Ideal para ocasiões especiais</li></ul>`
-  };
-
+    classic: `
+      <h2>Apartamento Classic</h2>
+      <p>Conforto e praticidade com excelente custo-benefício. Perfeito para estadias curtas ou longas, oferecendo tudo o que você precisa para se sentir em casa.</p>
+      <h3>Especificações:</h3>
+      <ul>
+        <li><strong>Tamanho:</strong> 20 m²</li>
+        <li><strong>Cama:</strong> Cama de solteiro ou casal</li>
+        <li><strong>Ar-condicionado</strong></li>
+        <li><strong>TV LED 32"</strong> com canais a cabo</li>
+        <li><strong>Wi-Fi gratuito</strong> de alta velocidade</li>
+        <li><strong>Banheiro privativo</strong> com
