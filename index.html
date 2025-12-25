@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Palace Carangola</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Poppins',Arial,sans-serif;
+  background:#f4f6f8;
+  color:#333;
+}
+
+/* CORES */
+:root{
+  --primary:#0f2a44;
+  --secondary:#1e4f7a;
+  --accent:#e0b973;
+  --white:#fff;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(15,42,68,.95);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+  padding:14px 20px;
+}
+
+.header-container{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:#fff;
+  font-size:1.4rem;
+  font-weight:600;
+}
+
+.menu-btn{
+  font-size:2rem;
+  color:#fff;
+  cursor:pointer;
+  display:none;
+}
+
+/* NAV */
+nav{
+  display:flex;
+  gap:35px;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transform:translateX(-50%);
+  transition:.3s;
+}
+
+nav a:hover::after{width:120%}
+nav a:hover{color:var(--accent)}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:
+  linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+  url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:clamp(2.2rem,6vw,3.6rem);
+  color:#fff;
+}
+
+.hero p{
+  font-size:clamp(1rem,4vw,1.3rem);
+  color:#eee;
+  margin-top:12px;
+}
+
+/* SECTIONS */
+section{padding:90px 20px}
+.container{max-width:1200px;margin:auto}
+
+h2{
+  text-align:center;
+  font-size:clamp(1.9rem,5vw,2.5rem);
+  color:var(--primary);
+  margin-bottom:40px;
+}
+
+/* SOBRE */
+#sobre p{
+  max-width:950px;
+  margin:auto;
+  font-size:1.1rem;
+  line-height:1.9;
+  text-align:center;
+}
+
+/* ACOMODAÇÕES */
+#accomodacoes,
+#acomodacoes{background:#eef2f6}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
+  cursor:pointer;
+  transition:.35s;
+  touch-action:manipulation;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
+
+.card div{padding:22px}
+.card span{
+  font-size:.8rem;
+  font-weight:600;
+  color:var(--accent);
+}
+.card h3{
+  margin:6px 0;
+  color:var(--primary);
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.modal-content{
+  background:#fff;
+  width:92%;
+  max-width:750px;
+  max-height:85vh;
+  overflow-y:auto;
+  border-radius:20px;
+  padding:30px;
+  position:relative;
+  animation:zoom .3s;
+}
+
+@keyframes zoom{
+  from{transform:scale(.9);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.close{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* CONTATO */
+form{
+  max-width:520px;
+  margin:auto;
+}
+
+input,textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  background:var(--accent);
+  border:none;
+  font-weight:600;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:var(--primary);
+  color:#fff;
+  text-align:center;
+  padding:30px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:55px;
+  height:55px;
+  background:#25d366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .menu-btn{display:block}
+
+  nav{
+    position:absolute;
+    top:65px;
+    left:0;
+    width:100%;
+    background:rgba(15,42,68,.98);
+    flex-direction:column;
+    gap:20px;
+    padding:25px 0;
+    display:none;
+  }
+
+  nav.active{display:flex}
+
+  nav a{font-size:1.1rem}
+
+  section{padding:70px 16px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo">Hotel Palace</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav id="menu">
+      <a href="#home" onclick="closeMenu()">Início</a>
+      <a href="#sobre" onclick="closeMenu()">Sobre</a>
+      <a href="#acomodacoes" onclick="closeMenu()">Acomodações</a>
+      <a href="#contato" onclick="closeMenu()">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h1>Hotel Palace Carangola</h1>
+    <p>Conforto, elegância e hospitalidade no coração da cidade</p>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container">
+    <h2>Sobre o Hotel</h2>
+    <p>
+      O Hotel Palace Carangola oferece uma experiência completa de hospedagem, unindo conforto,
+      localização privilegiada e atendimento de excelência. Suas acomodações são projetadas
+      para proporcionar bem-estar, tranquilidade e praticidade.
+    </p>
+  </div>
+</section>
+
+<section id="acomodacoes">
+  <div class="container">
+    <h2>Acomodações</h2>
+
+    <div class="cards">
+      <div class="card" onclick="openModal('classic')">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32">
+        <div>
+          <span>STANDARD</span>
+          <h3>Apartamento Classic</h3>
+          <p>Funcionalidade e conforto.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal('suite')">
+        <img src="https://images.unsplash.com/photo-1631049035182-249067d7618e">
+        <div>
+          <span>SUPERIOR</span>
+          <h3>Suíte Classic</h3>
+          <p>Mais espaço e privacidade.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal('master')">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39">
+        <div>
+          <span>PREMIUM</span>
+          <h3>Suíte Master</h3>
+          <p>Experiência sofisticada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div id="modalText"></div>
+  </div>
+</div>
+
+<section id="contato">
+  <div class="container">
+    <h2>Contato & Reservas</h2>
+
+    <form action="mailto:reservahotelpalace@hotmail.com" method="post" enctype="text/plain">
+      <input type="text" placeholder="Nome" required>
+      <input type="email" placeholder="E-mail" required>
+      <input type="tel" placeholder="Telefone">
+      <textarea placeholder="Datas e mensagem"></textarea>
+      <button>Solicitar Reserva</button>
+    </form>
+
+    <p style="text-align:center;margin-top:20px">
+      📍 Rua Pedro de Oliveira, 368 – Centro – Carangola/MG<br>
+      📞 (32) 99990-3895
+    </p>
+  </div>
+</section>
+
+<footer>
+  © Hotel Palace Carangola – Todos os direitos reservados
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5532999903895" target="_blank">💬</a>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+function closeMenu(){
+  document.getElementById("menu").classList.remove("active");
+}
+function openModal(tipo){
+  const modal=document.getElementById("modal");
+  const text=document.getElementById("modalText");
+
+  const dados={
+    classic:`<h2>Apartamento Classic</h2><p>Conforto e praticidade com excelente custo-benefício.</p><ul><li>Ar-condicionado</li><li>TV LED</li><li>Wi-Fi</li><li>Banheiro privativo</li></ul>`,
+    suite:`<h2>Suíte Classic</h2><p>Mais espaço e privacidade para sua estadia.</p><ul><li>Cama queen</li><li>Ambiente climatizado</li><li>Wi-Fi rápido</li></ul>`,
+    master:`<h2>Suíte Master</h2><p>Experiência premium com conforto superior.</p><ul><li>Ambiente amplo</li><li>Design sofisticado</li><li>Ideal para ocasiões especiais</li></ul>`
+  };
+
+  text.innerHTML=dados[tipo];
+  modal.style.display="flex";
+}
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
